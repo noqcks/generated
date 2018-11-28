@@ -1,6 +1,6 @@
 {
   "name": "@noqcks/generated",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generated detects files that have been automatically generated",
   "main": "index.js",
   "directories": {
