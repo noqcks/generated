@@ -3,13 +3,17 @@ node_js:
 - '9'
 - '10'
 
-deploy:
-  provider: npm
-  email: benny@noqcks.io
-  api_key:
-    secure: 0RjBFlyNRwCd1vNBK1N6OiS/uAqKzFY3yM+w8T2tAqLNlBAxJKnS1g0QbEIgEpKrFo1IgunWalhjISm/W2OtpBpfzXLazja0amUhn9iqK8KhBCGUzEUGW2X/N0HywVi9f+Tu/VV1vYOlg6IoDUl4IcJYcqxYdKRiR98USQXT7w4BsE/22QF+++UuUoL+3dlAnxHmhqwModh89oWfSrNlOqBFuFmXfXkiX2SPuHYN/hi+yZ+xigLyj4Nws/ouOSFs5Pw5zLeN5zs40PWBywdTmBDoU99q1Olxdxe8V1jqujOF6bKYWnFDbV5Stl/NxLNxFL/QtAHkVM3BTYko+hCfjNGh2lXSbeKoHKhkKg1JrfFWdBZb3160+BnHaNiRGwfsUM2Kz1aD35TXf7G6q6n494qBgeSB27PjOH2uysjEHn5BMQPu+XRfHhE2NOrhUyIAeQqoUFgcNpiIdlgybdKDUbSH4PnbkGaW7DZWVL4TaQlRd+FWN1ku987PEdFfFweDgTZbBFV2dIKAu/Zx7LmTeHb75iUVyRvbNwoLpBbH8D6UOttJ2WxnpaMDgKZhMhFz7POIwItdoMKmQlW7uMVyF3fLwshSQ4iH0HqomuT3r8Pza2Xdmb0vc8F2lonT1IgpmnoBoXHVVWwKcTR/W2kO8jBo9mcIl0i17WvCqzFIyoU=
-  on:
-    tags: true
-    repo: noqcks/generated
-    branch: master
-
+jobs:
+  include:
+    - stage: npm release
+      node_js: "10"
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        email: benny@noqcks.io
+        api_key:
+          secure: 0RjBFlyNRwCd1vNBK1N6OiS/uAqKzFY3yM+w8T2tAqLNlBAxJKnS1g0QbEIgEpKrFo1IgunWalhjISm/W2OtpBpfzXLazja0amUhn9iqK8KhBCGUzEUGW2X/N0HywVi9f+Tu/VV1vYOlg6IoDUl4IcJYcqxYdKRiR98USQXT7w4BsE/22QF+++UuUoL+3dlAnxHmhqwModh89oWfSrNlOqBFuFmXfXkiX2SPuHYN/hi+yZ+xigLyj4Nws/ouOSFs5Pw5zLeN5zs40PWBywdTmBDoU99q1Olxdxe8V1jqujOF6bKYWnFDbV5Stl/NxLNxFL/QtAHkVM3BTYko+hCfjNGh2lXSbeKoHKhkKg1JrfFWdBZb3160+BnHaNiRGwfsUM2Kz1aD35TXf7G6q6n494qBgeSB27PjOH2uysjEHn5BMQPu+XRfHhE2NOrhUyIAeQqoUFgcNpiIdlgybdKDUbSH4PnbkGaW7DZWVL4TaQlRd+FWN1ku987PEdFfFweDgTZbBFV2dIKAu/Zx7LmTeHb75iUVyRvbNwoLpBbH8D6UOttJ2WxnpaMDgKZhMhFz7POIwItdoMKmQlW7uMVyF3fLwshSQ4iH0HqomuT3r8Pza2Xdmb0vc8F2lonT1IgpmnoBoXHVVWwKcTR/W2kO8jBo9mcIl0i17WvCqzFIyoU=
+        on:
+          tags: true
+          repo: noqcks/generated
+          branch: master
