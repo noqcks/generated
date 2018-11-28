@@ -16,4 +16,3 @@ jobs:
         on:
           tags: true
           repo: noqcks/generated
-          branch: master
