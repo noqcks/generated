@@ -16,4 +16,4 @@ try {
 
 g = new generated(name, contents)
 
-console.log(g.is_generated())
+console.log(g.isGenerated())

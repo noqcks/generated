@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 const generated = require("../lib/generated");
 
-function is_generated(name) {
+function isGenerated(name) {
   filePath = path.join(__dirname + "/../samples", name);
   try {
     var contents = fs.readFileSync(filePath, 'utf8');
@@ -11,7 +11,7 @@ function is_generated(name) {
     var contents = ''
   }
   g = new generated(name, contents)
-  return g.is_generated()
+  return g.isGenerated()
 }
 
-module.exports.is_generated = is_generated
+module.exports.isGenerated = isGenerated
