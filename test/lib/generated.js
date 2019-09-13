@@ -83,6 +83,9 @@ describe('Generated', function() {
 
       // pkgdown-generateed HTML
       assert.ok(helper.isGenerated("HTML/pkgdown.html"))
+
+      // java grammarkit
+      assert.ok(helper.isGenerated("Java/GrammarKit.java"))
     });
   });
 });
