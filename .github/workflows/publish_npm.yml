@@ -1,4 +1,4 @@
-on: [push]
+on: push
 
 jobs:
   build-test:
@@ -21,7 +21,7 @@ jobs:
 
   publish:
     # if: github.ref == 'refs/heads/master'
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
