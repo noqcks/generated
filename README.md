@@ -37,4 +37,4 @@ console.log(g.is_generated())
 
 # LICENSE
 
-[MIT](LICENSE) © 2018 Benji Visser <benny@noqcks.io>
+[MIT](LICENSE) © 2021 Benji Visser <benji@093b.org>
