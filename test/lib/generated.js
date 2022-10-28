@@ -4,89 +4,150 @@ var assert = require('assert');
 describe('Generated', function() {
   describe('isGenerated()', function() {
     it('should detect when files are generated', function() {
-      // Generated .NET Docfiles
-      assert.ok(helper.isGenerated("XML/net_docfile.xml"))
-      // Long line
-      assert.ok(!helper.isGenerated("JavaScript/uglify.js"))
+      // Xcode project files
+      assert.ok(helper.generatedSampleWithoutLoadingData("Binary/MainMenu.nib"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/foo.xcworkspacedata"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/foo.xcuserstate"))
 
-      // Inlined JS, but mostly code
-      assert.ok(!helper.isGenerated("JavaScript/json2_backbone.js"))
+      // Cocoapods
+      assert.ok(helper.generatedSampleWithoutLoadingData("Pods/Pods.xcodeproj"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Pods/SwiftDependency/foo.swift"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Pods/ObjCDependency/foo.h"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Pods/ObjCDependency/foo.m"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/Pods/Pods.xcodeproj"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/Pods/SwiftDependency/foo.swift"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/Pods/ObjCDependency/foo.h"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/Pods/ObjCDependency/foo.m"))
 
-      // Minified JS
-      assert.ok(!helper.isGenerated("JavaScript/jquery-1.6.1.js"))
+      // Carthage
+      assert.ok(helper.generatedSampleWithoutLoadingData("Carthage/Build/.Dependency.version"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Carthage/Build/iOS/Dependency.framework"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Carthage/Build/Mac/Dependency.framework"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("src/Carthage/Build/.Dependency.version"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("src/Carthage/Build/iOS/Dependency.framework"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("src/Carthage/Build/Mac/Dependency.framework"))
 
-      // Go lockfiles
-      assert.ok(helper.isGenerated("TOML/filenames/Gopkg.lock"))
-      assert.ok(helper.isGenerated("YAML/filenames/glide.lock"))
+      // Go-specific vendored paths
+      assert.ok(helper.generatedSampleWithoutLoadingData("go/vendor/github.com/foo.go"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("go/vendor/golang.org/src/foo.c"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("go/vendor/gopkg.in/some/nested/path/foo.go"))
 
-      // Cargo generated Cargo.lock file
-      assert.ok(helper.isGenerated("TOML/filenames/Cargo.lock"))
+      // .NET designer file
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/foo.designer.cs"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/foo.Designer.cs"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/foo.designer.vb"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/foo.Designer.vb"))
 
       // Composer generated composer.lock file
-      assert.ok(helper.isGenerated("JSON/filenames/composer.lock"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("JSON/composer.lock"))
 
-      // Generated PostScript
-      assert.ok(!helper.isGenerated("PostScript/sierpinski.ps"))
+      // Node modules
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/node_modules/foo.js"))
 
-      // These examples are too basic to tell
-      assert.ok(!helper.isGenerated("JavaScript/hello.js"))
+      // npm shrinkwrap file
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/npm-shrinkwrap.json"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/package-lock.json"))
 
-      assert.ok(!helper.isGenerated("JavaScript/intro-old.js"))
-      assert.ok(!helper.isGenerated("JavaScript/classes-old.js"))
+      // Yarn Plug'n'Play file
+      assert.ok(helper.generatedSampleWithoutLoadingData(".pnp.js"))
+      assert.ok(helper.generatedSampleWithoutLoadingData(".pnp.cjs"))
+      assert.ok(helper.generatedSampleWithoutLoadingData(".pnp.mjs"))
+      assert.ok(helper.generatedSampleWithoutLoadingData(".pnp.loader.mjs"))
 
-      assert.ok(!helper.isGenerated("JavaScript/intro.js"))
-      assert.ok(!helper.isGenerated("JavaScript/classes.js"))
-
-      assert.ok(helper.isGenerated("JavaScript/ccalc-lex.js"))
-      assert.ok(helper.isGenerated("JavaScript/ccalc-parse.js"))
-
-      // Protocol Buffer generated code
-      assert.ok(helper.isGenerated("C++/protocol-buffer.pb.h"))
-      assert.ok(helper.isGenerated("C++/protocol-buffer.pb.cc"))
-      assert.ok(helper.isGenerated("Java/ProtocolBuffer.java"))
-      assert.ok(helper.isGenerated("Python/protocol_buffer_pb2.py"))
-      assert.ok(helper.isGenerated("Go/api.pb.go"))
-      assert.ok(helper.isGenerated("Go/embedded.go"))
-      assert.ok(helper.isGenerated("JavaScript/proto.js"))
-
-      // Generated JNI
-      assert.ok(helper.isGenerated("C/jni_layer.h"))
-
-      // Minified CSS
-      assert.ok(!helper.isGenerated("CSS/bootstrap.css"))
-      assert.ok(helper.isGenerated("CSS/bootstrap.min.css"))
-
-      // Generated VCR
-      assert.ok(helper.isGenerated("YAML/vcr_cassette.yml"))
+      // Godep saved dependencies
+      assert.ok(helper.generatedSampleWithoutLoadingData("Godeps/Godeps.json"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("Godeps/_workspace/src/github.com/kr/s3/sign.go"))
 
       // Generated by Zephir
-      assert.ok(!helper.isGenerated("Zephir/Router.zep"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("C/exception.zep.c"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("C/exception.zep.h"))
+      assert.ok(helper.generatedSampleWithoutLoadingData("PHP/exception.zep.php"))
 
-      // Go vendored dependencies
-      assert.ok(!helper.isGenerated("vendor/vendor.json"))
-      assert.ok(helper.isGenerated("vendor/github.com/kr/s3/sign.go"))
-      assert.ok(!helper.isGenerated("go/food_vendor/candy.go"))
+      // Minified files
+      assert.ok(helper.generatedSampleLoadingData("JavaScript/jquery-1.6.1.min.js"))
 
-      // Cython-generated C/C++
-      assert.ok(helper.isGenerated("C/sgd_fast.c"))
-      assert.ok(helper.isGenerated("C++/wrapper_inner.cpp"))
+      // JavaScript with source-maps
+      assert.ok(helper.generatedSampleLoadingData("JavaScript/namespace.js"))
+      assert.ok(helper.generatedFixtureLoadingData("Generated/inline.js"))
 
-      // Unity3D-generated metadata
-      assert.ok(helper.isGenerated("Unity3D Asset/Tiles.meta"))
+      // CSS with source-maps
+      assert.ok(helper.generatedFixtureLoadingData("Generated/linked.css"))
+      assert.ok(helper.generatedFixtureLoadingData("Generated/inline.css"))
 
-      // Racc-generated Ruby
-      assert.ok(helper.isGenerated("Ruby/racc.rb"))
+      // Source-map
+      assert.ok(helper.generatedFixtureWithoutLoadingData("Data/bootstrap.css.map"))
+      assert.ok(helper.generatedFixtureWithoutLoadingData("Generated/linked.css.map"))
+      assert.ok(helper.generatedFixtureLoadingData("Data/sourcemap.v3.map"))
+      assert.ok(helper.generatedFixtureLoadingData("Data/sourcemap.v1.map"))
 
-      // protobuf/grpc-plugin C++
-      assert.ok(helper.isGenerated("C++/hello.grpc.pb.h"))
-      assert.ok(helper.isGenerated("C++/grpc.pb.cc"))
+      // Specflow
+      assert.ok(helper.generatedFixtureWithoutLoadingData("Features/BindingCulture.feature.cs"))
 
-      // pkgdown-generateed HTML
-      assert.ok(helper.isGenerated("HTML/pkgdown.html"))
+      // JFlex
+      assert.ok(helper.generatedSampleLoadingData("Java/JFlexLexer.java"))
 
-      // java grammarkit
-      assert.ok(helper.isGenerated("Java/GrammarKit.java"))
+      // GrammarKit
+      assert.ok(helper.generatedSampleLoadingData("Java/GrammarKit.java"))
+
+      // roxygen2
+      assert.ok(helper.generatedSampleLoadingData("R/import.Rd"))
+
+      // PostScript
+      assert.ok(helper.generatedSampleLoadingData("PostScript/lambda.pfa"))
+
+      // Perl ppport.h
+      assert.ok(helper.generatedFixtureLoadingData("Generated/ppport.h"))
+
+      // Graphql Relay
+      assert.ok(helper.generatedSampleWithoutLoadingData("Javascript/__generated__/App_user.graphql.js"))
+
+      // Game Maker Studio 2
+      assert.ok(helper.generatedSampleLoadingData("JSON/GMS2_Project.yyp"))
+      assert.ok(helper.generatedSampleLoadingData("JSON/2ea73365-b6f1-4bd1-a454-d57a67e50684.yy"))
+      assert.ok(helper.generatedFixtureLoadingData("Generated/options_main.inherited.yy"))
+
+      // Pipenv
+      assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/Pipfile.lock"))
+
+      // HTML
+      assert.ok(helper.generatedFixtureLoadingData("HTML/attr-swapped.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/extra-attr.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/extra-spaces.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/extra-tags.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/grohtml.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/grohtml.xhtml"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/makeinfo.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/mandoc.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/node78.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/org-mode.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/quotes-double.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/quotes-none.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/quotes-single.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/uppercase.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/ronn.html"))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/unknown.html", true))
+      assert.ok(helper.generatedFixtureLoadingData("HTML/no-content.html", true))
+      assert.ok(helper.generatedSampleLoadingData("HTML/pages.html"))
+
+      // GIMP
+      assert.ok(helper.generatedFixtureLoadingData("C/image.c"))
+      assert.ok(helper.generatedFixtureLoadingData("C/image.h"))
+
+      // Haxe
+      assert.ok(helper.generatedFixtureLoadingData("Generated/Haxe/main.js"))
+      assert.ok(helper.generatedFixtureLoadingData("Generated/Haxe/main.py"))
+      assert.ok(helper.generatedFixtureLoadingData("Generated/Haxe/main.lua"))
+      assert.ok(helper.generatedFixtureLoadingData("Generated/Haxe/Main.cpp"))
+      assert.ok(helper.generatedFixtureLoadingData("Generated/Haxe/Main.h"))
+      assert.ok(helper.generatedFixtureLoadingData("Generated/Haxe/Main.java"))
+      assert.ok(helper.generatedFixtureLoadingData("Generated/Haxe/Main.cs"))
+      assert.ok(helper.generatedFixtureLoadingData("Generated/Haxe/Main.php"))
+
+      // jOOQ
+      assert.ok(helper.generatedSampleLoadingData("Java/generated-jooq-table.java"))
+
+      // poetry
+      assert.ok(helper.generatedSampleWithoutLoadingData("TOML/filenames/poetry.lock"))
     });
   });
 });
-

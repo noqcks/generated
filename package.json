@@ -9,7 +9,7 @@
   "scripts": {
     "test": "mocha 'test/lib/*.js'"
   },
-  "author": "Benji Visser <benny@noqcks.io>",
+  "author": "Benji Visser <benji@093b.org>",
   "license": "MIT",
   "devDependencies": {
     "mocha": "^5.2.0"
