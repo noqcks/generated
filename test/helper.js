@@ -38,6 +38,7 @@ function generatedFixtureLoadingData(name) {
   return generatedLoadingData(path.join(fixturesPath(), name))
 }
 
+
 module.exports = {
   generatedSampleWithoutLoadingData,
   generatedSampleLoadingData,

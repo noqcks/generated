@@ -9,6 +9,9 @@ describe('Generated', function() {
       assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/foo.xcworkspacedata"))
       assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/foo.xcuserstate"))
 
+      // Gemfile.lock is NOT generated
+      assert.ok(!helper.generatedSampleWithoutLoadingData("Gemfile.lock"))
+
       // Cocoapods
       assert.ok(helper.generatedSampleWithoutLoadingData("Pods/Pods.xcodeproj"))
       assert.ok(helper.generatedSampleWithoutLoadingData("Pods/SwiftDependency/foo.swift"))
@@ -110,23 +113,7 @@ describe('Generated', function() {
       assert.ok(helper.generatedSampleWithoutLoadingData("Dummy/Pipfile.lock"))
 
       // HTML
-      assert.ok(helper.generatedFixtureLoadingData("HTML/attr-swapped.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/extra-attr.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/extra-spaces.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/extra-tags.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/grohtml.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/grohtml.xhtml"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/makeinfo.html"))
       assert.ok(helper.generatedFixtureLoadingData("HTML/mandoc.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/node78.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/org-mode.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/quotes-double.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/quotes-none.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/quotes-single.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/uppercase.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/ronn.html"))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/unknown.html", true))
-      assert.ok(helper.generatedFixtureLoadingData("HTML/no-content.html", true))
       assert.ok(helper.generatedSampleLoadingData("HTML/pages.html"))
 
       // GIMP
