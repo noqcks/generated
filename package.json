@@ -1,6 +1,6 @@
 {
   "name": "@noqcks/generated",
-  "version": "1.0.1",
+  "version": "7.23.0",
   "description": "Generated detects files that have been automatically generated",
   "main": "index.js",
   "directories": {
@@ -9,9 +9,12 @@
   "scripts": {
     "test": "mocha 'test/lib/*.js'"
   },
-  "author": "Benji Visser <benny@noqcks.io>",
+  "author": "Benji Visser <benji@093b.org>",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "mocha": "^5.2.0"
   },
   "publishConfig": {
