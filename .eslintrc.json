@@ -17,6 +17,7 @@
       "test/fixtures/**/*"
     ],
     "rules": {
-      "no-underscore-dangle": ["error", { "allow": ["_data"] }]
+      "no-underscore-dangle": ["error", { "allow": ["_data"] }],
+      "no-useless-escape": "off",
     }
 }
