@@ -1,5 +1,6 @@
 {
     "env": {
+        "mocha": true,
         "browser": true,
         "commonjs": true,
         "es2021": true
@@ -11,7 +12,10 @@
         "ecmaVersion": "latest"
     },
     // ignore samples
-    "ignorePatterns": ["samples/**/*"],
+    "ignorePatterns": [
+      "samples/**/*",
+      "test/fixtures/**/*"
+    ],
     "rules": {
       "no-underscore-dangle": ["error", { "allow": ["_data"] }]
     }

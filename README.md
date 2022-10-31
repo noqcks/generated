@@ -17,7 +17,7 @@ See file [scripts/example.js](scripts/example.js) for an example of usage.
 var fs = require('fs');
 var path = require('path');
 
-const generated = require("./lib/generated");
+const Generated = require("./lib/generated");
 
 var name = "JavaScript/json2_backbone.js"
 
@@ -30,7 +30,7 @@ try {
   var contents = ''
 }
 
-g = new generated(name, contents)
+const g = new Generated(name, contents)
 
 console.log(g.is_generated())
 ```
