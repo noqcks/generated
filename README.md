@@ -9,19 +9,25 @@ For a full list of generated files detected, see [generated.js](lib/generated.js
 
 This project is largely a node.js port of the `generated` functionality of [GitHub linguist](https://github.com/github/linguist). The versioning of this project will follow the versioning of linguist.
 
+# Installation 
+
+```
+npm i @noqcks/generated
+```
+
+https://www.npmjs.com/package/@noqcks/generated
+
 # Usage
 
 See file [scripts/example.js](scripts/example.js) for an example of usage.
 
 ```
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
+const Generated = require("@noqcks/generated");
 
-const Generated = require("./lib/generated");
-
-var name = "JavaScript/json2_backbone.js"
-
-filePath = path.join("./samples", name);
+const fileName = "JavaScript/json2_backbone.js"
+const filePath = path.join("./samples", fileName);
 
 try {
   var contents = fs.readFileSync(filePath, 'utf8');
