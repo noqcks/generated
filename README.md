@@ -38,7 +38,7 @@ try {
 
 const g = new Generated(name, contents)
 
-console.log(g.is_generated())
+console.log(g.isGenerated())
 ```
 
 # LICENSE
