@@ -24,7 +24,7 @@
 		<cglib.version>2.1_3</cglib.version>
 
 		<mysql.version>5.1.31</mysql.version>
-		<hibernate.version>4.3.5.Final</hibernate.version>
+		<hibernate.version>5.3.20.Final</hibernate.version>
 		<hibernate-validator.version>5.1.1.Final</hibernate-validator.version>
 		<druid-version>1.0.6</druid-version>
 
