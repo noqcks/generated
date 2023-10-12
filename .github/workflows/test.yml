@@ -17,9 +17,14 @@ jobs:
         node-version: [14.x, 16.x]
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Create SBOM
+        uses: anchore/sbom-action@v0
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm test
+          image: kimb88/hello-world-spring-boot
+          format: spdx-json
+          output-file: "${{ github.event.repository.name }}-sbom.spdx.json"
+      - name: Xeol End-of-Life (EOL) Scan
+        uses: xeol-io/xeol-action@v1.0.7
+        with:
+          sbom: "${{ github.event.repository.name }}-sbom.spdx.json"
+            
