@@ -14,12 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: 14.x
     steps:
       - uses: actions/checkout@v3
       - name: Create SBOM
         uses: anchore/sbom-action@v0
         with:
+          syft-version: v0.93.0
           image: kimb88/hello-world-spring-boot
           format: spdx-json
           output-file: "${{ github.event.repository.name }}-sbom.spdx.json"
