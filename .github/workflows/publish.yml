@@ -32,6 +32,6 @@ jobs:
       - name: Set version to release tag 📝
         run: pnpm version from-git --no-commit-hooks --no-git-tag-version --allow-same-version
 
-      - run: pnpm publish --provenance --access public
+      - run: pnpm publish --provenance --no-git-checks --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
