@@ -1,18 +1,13 @@
-import github from 'eslint-plugin-github'
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import tseslint from "typescript-eslint";
 
+
+/** @type {import('eslint').Linter.Config[]} */
 export default [
-  github.getFlatConfigs().browser,
-  github.getFlatConfigs().recommended,
-  github.getFlatConfigs().react,
-  ...github.getFlatConfigs().typescript,
-  {
-    files: ['**/*.ts', "*.ts"],
-    ignores: ['samples/**/*', 'test/fixtures/**/*', 'dist/**/*', 'node_modules/**/*', "eslint.config.js"],
-    rules: {
-      'github/array-foreach': 'error',
-      'github/async-preventdefault': 'warn',
-      'github/no-then': 'error',
-      'github/no-blur': 'error',
-    },
-  },
-]
+  {files: ["**/*.{js,mjs,cjs,ts}"]},
+  {ignores: ["samples/", "test/fixtures/**/*", "dist/**/*", "node_modules/**/*", "eslint.config.js", "jest.config.js"]},
+  {languageOptions: { globals: globals.browser }},
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+];
