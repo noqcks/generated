@@ -2,22 +2,48 @@
   "name": "@noqcks/generated",
   "version": "7.23.1",
   "description": "Generated detects files that have been automatically generated",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "mocha 'test/lib/*.js'"
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint ."
   },
+  "packageManager": "pnpm@9.15.4",
   "author": "Benji Visser <benji@093b.org>",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^8.26.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "mocha": "^5.2.0"
+    "@eslint/js": "^9.20.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.4",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
+    "@typescript-eslint/parser": "^8.24.0",
+    "eslint": "^9.20.1",
+    "eslint-plugin-import": "^2.31.0",
+    "globals": "^15.15.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0"
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noqcks/generated.git"
+  },
+  "keywords": [
+    "generated",
+    "detection",
+    "files"
+  ],
+  "bugs": {
+    "url": "https://github.com/noqcks/generated/issues"
+  },
+  "homepage": "https://github.com/noqcks/generated#readme"
 }
