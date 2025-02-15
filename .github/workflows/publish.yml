@@ -1,21 +1,35 @@
 name: Publish Package to npmjs
 
 on:
-  push:
-    tags:
-    - '*'
+  release:
+    types: [published]
+
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '16.x'
+          node-version: latest
+          cache: pnpm
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm publish
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+
+      - name: Set version to release tag 📝
+        run: pnpm version from-git --no-commit-hooks --no-git-tag-version --allow-same-version
+
+      - run: pnpm publish --no-git-checks --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push version changes to main branch
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: release ${{ github.event.release.tag_name }}"
+          branch: ${{ github.event.repository.default_branch }}
+          file_pattern: package.json
