@@ -2,14 +2,16 @@
   "name": "@noqcks/generated",
   "version": "8.0.1",
   "description": "Generated detects files that have been automatically generated",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/lib/generated.js",
+  "types": "dist/lib/generated.d.ts",
   "type": "module",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "tsc",
+    "prepare": "npm run build",
     "test": "jest --config jest.config.mjs",
     "lint": "eslint ."
   },
