@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+    "test": "jest --config jest.config.mjs",
     "lint": "eslint ."
   },
   "packageManager": "pnpm@9.15.4",
